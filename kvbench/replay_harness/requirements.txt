@@ -1,0 +1,3 @@
+# KVBench CPU pilot + validator: Python 3.8+ standard library only.
+# No third-party packages are required. This file is intentionally dependency-free
+# so the contract validator runs on a commodity laptop with a stock Python install.

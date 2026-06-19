@@ -1,0 +1,13 @@
+query_id,source,query_string,date_run,raw_hits,relevant_after_screen
+Q01,arXiv (cs.DC cs.LG cs.OS cs.AR cs.CR),"KV cache" AND (disaggregated OR shared OR pooled),2026-05-20,58,41
+Q02,arXiv,"prefix cache" OR "context cache" OR "prompt cache",2026-05-20,44,28
+Q03,arXiv,"KV cache" AND (cross-request OR cross-model OR multi-agent OR multi-tenant),2026-05-20,37,29
+Q04,arXiv,"KV cache" AND (CXL OR RDMA OR coherence OR cross-datacenter),2026-05-20,21,14
+Q05,arXiv,"attention cache" AND (agent OR agentic OR multi-turn OR tool-call),2026-05-21,26,18
+Q06,ACM Digital Library,"key-value cache" AND "large language model" AND serving,2026-05-21,28,19
+Q07,IEEE Xplore,"LLM inference" AND (cache OR memory) AND (distributed OR disaggregated),2026-05-21,23,15
+Q08,USENIX/OSDI/SOSP/NSDI/ATC proceedings,KV cache OR prefix reuse OR disaggregated serving,2026-05-22,22,17
+Q09,ASPLOS/ISCA proceedings,CXL memory pooling OR cache coherence OR disaggregated memory,2026-05-22,18,11
+Q10,MLSys/EuroSys proceedings,KV cache tiering OR prefill-decode disaggregation,2026-05-22,15,12
+Q11,DBLP + backward snowballing,"distributed shared memory" OR "content-addressable storage" anchors,2026-05-23,11,9
+Q12,forward snowballing (cited-by of seed-16),2025-2026 KV-sharing point solutions,2026-05-23,9,9

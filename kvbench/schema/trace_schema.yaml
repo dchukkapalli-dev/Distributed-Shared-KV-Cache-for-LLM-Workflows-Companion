@@ -1,0 +1,93 @@
+# KVBench trace schema (v0.1)
+#
+# A KVBench trace is a JSON Lines (.jsonl) file: one JSON object per line, each
+# object a single request annotated with the fields below. The schema is the
+# machine-readable contract referenced by the manuscript's benchmark proposal.
+# validate_trace.py enforces exactly these rules (it mirrors this file in pure
+# Python so that no YAML parser is needed to run the validator).
+#
+# Each field maps to one of the five taxonomy axes so that no single reported
+# number can be cherry-picked: a conforming metric report must cover all axes.
+
+schema_version: "0.1"
+record_format: jsonl            # one JSON object per line
+
+fields:
+  record_id:
+    type: string
+    required: true
+    description: Unique id of this request record (non-empty).
+
+  tenant_id:
+    type: string
+    required: true
+    description: Owning tenant; drives the fairness / isolation (tenancy) axis.
+
+  agent_id:
+    type: string
+    required: true
+    description: Agent or branch identity within the tenant.
+
+  parent_id:
+    type: [string, "null"]
+    required: false
+    description: >
+      Ancestor record_id for a forked sibling. Must be non-null for
+      multi_agent_branch records; null or absent otherwise.
+
+  workload_family:
+    type: string
+    required: true
+    enum: [multi_turn, multi_agent_branch, multi_tenant]
+    description: >
+      Which agentic pattern this record exercises. A conforming trace must
+      contain at least two of the three families.
+
+  prefix_tokens:            # L in the placement model (Proposition 1)
+    type: integer
+    required: true
+    minimum: 0
+    description: Shared-prefix length in tokens; the L term of the share-vs-recompute condition.
+
+  per_token_bytes:          # b in the placement model
+    type: integer
+    required: true
+    exclusiveMinimum: 0
+    description: KV bytes per token for this model/precision; the b term.
+
+  arrival_time_s:
+    type: number
+    required: true
+    minimum: 0
+    description: Request arrival time in seconds from trace start.
+
+  tool_pause_s:
+    type: number
+    required: true
+    minimum: 0
+    description: >
+      Tool-call pause before continuation; drives the TTL / retention
+      (consistency) axis (cf. Continuum, PBKV).
+
+  granularity:              # g in the object model
+    type: string
+    required: true
+    enum: [token, block, layer]
+    description: Granularity the request demands of the KV object model.
+
+  consistency_req:          # chi in the consistency spectrum
+    type: string
+    required: true
+    enum: [strong, session, eventual, immutable]
+    description: Consistency level the request requires of a shared prefix.
+
+# Metric set a conforming report must emit (one per axis); see manuscript
+# Section "Trace schema and metrics". Listed here for documentation; not
+# validated by validate_trace.py, which checks trace conformance only.
+required_metrics_by_axis:
+  scope:        [hit_rate, effective_reuse_r]
+  placement:    [p99_ttft_s, share_vs_recompute_margin]
+  consistency:  [staleness_rate, invalidation_rate]
+  transport:    [bytes_moved_per_token]
+  compression:  [fidelity_loss]
+  tenancy:      [fairness_index, dedup_timing_distinguishability]

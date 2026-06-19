@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this companion artefact, please cite the manuscript referenced under preferred-citation."
+title: "Companion artefact for: A Distributed Shared KV-Cache Layer for Agentic LLM Workflows: A Survey and Design Study of KV-Cache-as-a-Service"
+type: dataset
+license: CC-BY-4.0
+version: "1.0.3"
+date-released: "2026-06-19"
+repository-code: "https://github.com/dchukkapalli-dev/Distributed-Shared-KV-Cache-for-LLM-Workflows-Companion"
+url: "https://doi.org/10.5281/zenodo.20754633"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.20754633"
+    description: "Concept DOI on Zenodo (always resolves to the latest version)"
+authors:
+  - family-names: Chukkapalli
+    given-names: Divya
+    orcid: "https://orcid.org/0009-0005-4691-3395"
+    affiliation: "Independent Researcher, Apex NC, USA"
+  - family-names: Mishra
+    given-names: Sanjay
+    orcid: "https://orcid.org/0009-0006-7854-996X"
+    affiliation: "Independent Researcher, Raleigh NC, USA"
+  - family-names: Naik
+    given-names: Ganesh R
+    orcid: "https://orcid.org/0000-0003-1790-9838"
+    affiliation: "School of Technology, Torrens University, Adelaide, Australia"
+    email: ganesh.naik@torrens.edu.au
+preferred-citation:
+  type: article
+  title: "A Distributed Shared KV-Cache Layer for Agentic LLM Workflows: A Survey and Design Study of KV-Cache-as-a-Service"
+  authors:
+    - family-names: Chukkapalli
+      given-names: Divya
+    - family-names: Mishra
+      given-names: Sanjay
+    - family-names: Naik
+      given-names: Ganesh R
+  year: 2026
+  journal: "IEEE Access"
